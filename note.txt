@@ -1,0 +1,28 @@
+SparkConsumer2.4
+
+
+Progetto funzionante con Spark.1.6.1 creato a partire dal SparkConsumer2.2 aggiungendo:
+- gestione del checkpoint di Spark
+
+su sparkConsumer.properties aggiunta:
+
+CHECKPOINT_PATH_2
+
+
+1)Kafka2SparkDBConsumer:
+tratta i messaggi DATART (ad esclusione degli Eventi)
+
+
+2)Kafka2SparkRecordEConsumer:
+tratta solo i messaggi DATART di tipo Evento.
+Salva sul db, trasmette verso IMA e DMS
+
+
+24/10/2016
+E' la versione al momento deployata in ambiente
+di sviluppo e in ambiente di produzione (per il parallelo)
+
+COMANDO DI LANCIO in ambiente di sviluppo in Cluster
+./spark-submit --class "it.acconsulting.sparkconsumer.Kafka2SparkDBConsumer"  --master spark://192.168.1.107:7077 --deploy-mode cluster --jars /var/opt/spark/SparkConsumer-2.4-jar-with-dependencies.jar --supervise    /var/opt/spark/SparkConsumer-2.4-jar-with-dependencies.jar  192.168.1.75:9092,192.168.1.139:9092,192.168.1.219:9092 ac-topic
+
+
